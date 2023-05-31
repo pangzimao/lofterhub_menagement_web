@@ -1,3 +1,4 @@
+<!-- 暂时首页迁移 -->
 <template>
     <div class="wrapper">
           <!--start page wrapper -->
