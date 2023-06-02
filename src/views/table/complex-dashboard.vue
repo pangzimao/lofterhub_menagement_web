@@ -524,15 +524,30 @@
   
   <script>
   /* eslint-disable */
+  import Driver from 'driver.js' // import driver.js
+import 'driver.js/dist/driver.min.css' // import driver.js css
+import steps from './steps'
+
   export default {
       name:"",
       data() {
           return {
-  
+            driver: null
           }
       },
+      mounted(){
+        this.driver = new Driver()
+        if (window.location.href.indexOf("#reloaded") == -1) {
+            // window.location.href = window.location.href + "#reloaded";
+            // window.location.reload();
+            this.guide()
+        }
+    },
       methods:{
-          
+        guide() {
+        this.driver.defineSteps(steps)
+        this.driver.start()
+        }
       }
   }
   </script>
