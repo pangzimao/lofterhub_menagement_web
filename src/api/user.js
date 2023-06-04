@@ -1,4 +1,5 @@
 import request from '@/utils/request'
+import request2 from '@/utils/request2'
 
 export function login(data) {
   return request({
@@ -8,6 +9,13 @@ export function login(data) {
   })
 }
 
+export function login2(data) {
+  return request2({
+    url: '/dashboard/admin/sign-in',
+    method: 'post',
+    data
+  })
+}
 export function getInfo(token) {
   return request({
     url: '/vue-element-admin/user/info',

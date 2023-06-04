@@ -76,7 +76,8 @@
 <script>
 import { validUsername } from '@/utils/validate'
 import SocialSign from './components/SocialSignin'
-
+import {login2} from "@/api/user"
+import { getToken, setToken, removeToken } from '@/utils/auth'
 export default {
   name: 'Login',
   components: { SocialSign },
@@ -89,8 +90,8 @@ export default {
       }
     }
     const validatePassword = (rule, value, callback) => {
-      if (value.length < 6) {
-        callback(new Error('The password can not be less than 6 digits'))
+      if (value.length < 5) {
+        callback(new Error('The password can not be less than 5 digits'))
       } else {
         callback()
       }
@@ -98,11 +99,11 @@ export default {
     return {
       loginForm: {
         username: 'admin',
-        password: '111111'
+        password: 'admin'
       },
       loginRules: {
         username: [{ required: true, trigger: 'blur', validator: validateUsername }],
-        password: [{ required: true, trigger: 'blur', validator: validatePassword }]
+        password: [{ required: true, trigger: 'blur', }]
       },
       passwordType: 'password',
       capsTooltip: false,
@@ -153,12 +154,14 @@ export default {
       })
     },
     handleLogin() {
+          console.log('111111');
       this.$refs.loginForm.validate(valid => {
         if (valid) {
+          console.log('22222');
           this.loading = true
           this.$store.dispatch('user/login', this.loginForm)
             .then(() => {
-              this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
+              this.$router.push({ path: '/' })
               this.loading = false
             })
             .catch(() => {

@@ -81,7 +81,7 @@ export const constantRoutes = [
         // component: () => import('@/views/dashboard/index'),
         name: 'ComplexDashboard',
         // name: 'Dashboard',
-        meta: { title: 'Dashboard', icon: 'dashboard', affix: true }
+        meta: { title: '首页', icon: 'dashboard', affix: true }
       }
     ]
   },
@@ -131,6 +131,22 @@ export const constantRoutes = [
  * the routes that need to be dynamically loaded based on user roles
  */
 export const asyncRoutes = [
+  {
+    path: '/supplier',
+    component: Layout,
+    redirect: '/supplier/page',
+    children: [
+      {
+        path: 'page',
+        component: () => import('@/views/supplier/index'),
+        name: 'PageSupplier',
+        meta: {
+          title: '供应商管理',
+          icon:"component",
+          roles: ['admin'] // or you can only set roles in sub nav
+        }
+      },]
+  },
   {
     path: '/permission',
     component: Layout,

@@ -10,7 +10,7 @@
                           <div class="card-body">
                               <div class="d-flex align-items-center">
                                   <div>
-                                      <p class="mb-0 text-secondary">订单总数</p>
+                                      <p class="mb-0 text-secondary">+2.5% from last week</p>
                                       <h4 class="my-1 text-info">4805</h4>
                                       <p class="mb-0 font-13">+2.5% from last week</p>
                                   </div>

@@ -7,9 +7,9 @@ import { getToken } from '@/utils/auth'
 const service = axios.create({
   baseURL: JD_PROJECT_BS_CONFIG.APP_BASE_API, // url = base url + request url
   // withCredentials: true, // send cookies when cross-domain requests
-  timeout: 5000, // request timeout
+  timeout: 60*1000, // request timeout
   headers: {
-    'Content-Type': 'application/json;charset=UTF-8',
+    'Content-Type': 'application/json',
   },
 })
 
@@ -47,9 +47,10 @@ service.interceptors.response.use(
    */
   response => {
     const res = response.data
-
+    console.log('返回',response);
     // if the custom code is not 20000, it is judged as an error.
-    if (res.code !== 200) {
+    if (res.code !== "200") {
+      console.log('报错',res.data);
       Message({
         message: res.message || 'Error',
         type: 'error',
