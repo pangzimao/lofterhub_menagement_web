@@ -2,7 +2,7 @@ import axios from 'axios'
 import { MessageBox, Message } from 'element-ui'
 import store from '@/store'
 import { getToken } from '@/utils/auth'
-
+import JSONBIG from 'json-bigint'
 // create an axios instance
 const service = axios.create({
   baseURL: JD_PROJECT_BS_CONFIG.APP_BASE_API, // url = base url + request url
@@ -12,6 +12,16 @@ const service = axios.create({
     'Content-Type': 'application/json',
   },
 })
+
+axios.defaults.transformResponse = [
+  function (data) {
+    const json = JSONBIG({
+      storeAsString: true
+    })
+    const res = json.parse(data)
+    return res
+  }
+]
 
 // request interceptor
 service.interceptors.request.use(
@@ -47,10 +57,8 @@ service.interceptors.response.use(
    */
   response => {
     const res = response.data
-    console.log('返回',response);
     // if the custom code is not 20000, it is judged as an error.
     if (res.code !== "200") {
-      console.log('报错',res.data);
       Message({
         message: res.message || 'Error',
         type: 'error',

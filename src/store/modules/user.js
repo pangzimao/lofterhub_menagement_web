@@ -33,9 +33,12 @@ const actions = {
   login({ commit }, userInfo) {
     const { username, password } = userInfo
     return new Promise((resolve, reject) => {
-      login({ username: username.trim(), password: password }).then(response => {
-        // login2({ username: username.trim(), password: password }).then(response => {
+      // login({ username: username.trim(), password: password }).then(response => {
+        login2({ username: username.trim(), password: password }).then(response => {
         const { data } = response
+        // let data = {
+        //   token:'123'
+        // }
         commit('SET_TOKEN', data.token)
         console.log('获取token',data.token);
         setToken(data.token)

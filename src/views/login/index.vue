@@ -180,7 +180,7 @@ export default {
         }
         return acc
       }, {})
-    }
+    },
     // afterQRScan() {
     //   if (e.key === 'x-admin-oauth-code') {
     //     const code = getQueryObject(e.newValue)
@@ -198,7 +198,62 @@ export default {
     //       alert('第三方登录失败')
     //     }
     //   }
-    // }
+    // },
+    getArr(){
+      let A = [{
+          name: "Alan",
+          credit: 10,
+          address: "10 Peter St.",
+          skill: ["climbing", "cooking"]
+      },
+      {
+          name: "Jack",
+          credit: 21.0,
+          address: "192 Kinsington Ave.",
+          skill: ["programing"]
+      },]
+      let B = [
+      {
+          name: "Jessica",
+          credit: 10,
+          address: "82 Lafei St.",
+          backpack: ["candy", "eyelash"]
+      },
+      {
+          name: "Muse",
+          credit: 26.3,
+          address: "33 Udon Drive",
+          backpack: ["torch"]
+      },
+      ]
+
+    },
+    printAorB(a,b){
+      const alen = a.length;
+      const blen = b.length;
+      let max,min;
+      var i=0;
+      var j=0;
+      let arr = []
+      if(alen>=blen){
+        max = a
+        min = b
+      }else{
+        min = a
+        max = b
+        for(i=0;i<min.length;i++){
+          for(j=0;j<max.length;j++){
+            if(max[j].credit==min[i].credit){
+              arr.push({
+                aName:min[i].name
+              })
+            }
+          }
+        }
+      }
+      
+      
+    },
   }
 }
 </script>
