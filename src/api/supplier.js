@@ -3,8 +3,8 @@ import request from "@/utils/request2"
 export function getSupplier(data){
     return request({
         url: '/dashboard/provider/retrieve',
-        method: 'post',
-        data
+        method: 'get',
+        params:data
       })
 }
 

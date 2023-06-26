@@ -53,7 +53,7 @@
         icon="el-icon-edit"
         @click="handleCreate"
       >
-        新增
+        新增订阅
       </el-button>
     </div>
 
@@ -211,7 +211,7 @@
             format="yyyy 年 MM 月 dd 日"
             value-format="timestamp"
           /> -->
-          <el-input-number v-model="temp.validTime"></el-input-number>
+          <el-input-number v-model="temp.validTime"></el-input-number>天
         </el-form-item>
         <el-form-item label="购买时间">
           <el-date-picker
@@ -229,7 +229,7 @@
             :step="1"
             class="filter-item"
             placeholder="请输入价格"
-          ></el-input-number>
+          ></el-input-number>元
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">

@@ -30,3 +30,11 @@ export function logout() {
     method: 'post'
   })
 }
+
+export function getUserList(query) {
+  return request2({
+    url: '/dashboard/users/retrieve',
+    method: 'get',
+    params:query
+  })
+}

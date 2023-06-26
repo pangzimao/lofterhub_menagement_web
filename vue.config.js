@@ -38,7 +38,8 @@ module.exports = {
     },
     proxy:{
       '/ts':{
-        target:"http://192.168.31.122:9620",
+        target: 'http://38.55.214.13:2018',
+        // target:"http://192.168.31.122:9620",
         changeOrigin:true,
         pathRewrite:{
           '^/ts':''

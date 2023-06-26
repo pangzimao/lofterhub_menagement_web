@@ -3,8 +3,8 @@ import request from "@/utils/request2"
 export function getAirport(data){
     return request({
         url: '/dashboard/airport/configuration/retrieve',
-        method: 'post',
-        data
+        method: 'get',
+        params:data
       })
 }
 
@@ -40,4 +40,12 @@ export function updateTraffic(data){
         data
       })
   }
-  
+
+  //获取三个套餐，用于给用户分配套餐，系统自动绑定vdk
+  export function getAllBundles(){
+    return request({
+        url: '/lofterhub/subscribe/retrieve/bundles',
+        method: 'get',
+        
+      })
+  }

@@ -163,6 +163,22 @@ export const asyncRoutes = [
         }
       },]
   },
+  {
+    path: '/user',
+    component: Layout,
+    redirect: '/user/page',
+    children: [
+      {
+        path: 'page',
+        component: () => import('@/views/user/index'),
+        name: 'PageUser',
+        meta: {
+          title: '用户管理',
+          icon:"people",
+          roles: ['admin'] // or you can only set roles in sub nav<svg-icon icon-class="guide" />
+        }
+      },]
+  },
   // {
   //   path: '/permission',
   //   component: Layout,
