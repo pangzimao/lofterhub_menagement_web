@@ -38,3 +38,11 @@ export function getUserList(query) {
     params:query
   })
 }
+
+export function boundUser(data) {
+  return request2({
+    url: '/dashboard/vdk/bound',
+    method: 'post',
+    data
+  })
+}

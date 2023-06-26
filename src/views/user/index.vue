@@ -121,14 +121,14 @@
         >
         </el-table-column>
         <el-table-column label="操作" align="center" width="230" fixed="right">
-          <template slot-scope="{ row, $index }">
+          <template slot-scope="{ row}">
             <!-- <el-button type="primary" size="mini" @click="handleUpdate(row)">
               编辑
             </el-button> -->
             <el-button
               size="mini"
               type="warning"
-              @click="openRem(row.id, $index)"
+              @click="openRem(row.username)"
             >
               绑定套餐
             </el-button>
@@ -316,11 +316,12 @@
         downloadLoading: false,
         supplierList:[],
         loading:false,
-        buyValue:""
+        buyValue:"",
+        uname:""
       };
     },
     created() {
-    //   this.getList();
+      this.getList();
     this.getListA()
     //   this.getAllSup()
     },
@@ -342,20 +343,33 @@
           });
       },
       getListA(){
-        this.listLoading = true;
+        // this.listLoading = true;
         getAllBundles().then(res=>{
             this.importanceOptions = res.data
-            this.listLoading = false;
+            // this.listLoading = false;
         })
       },
       lookUp(val){
 
       },
       submitValue(){
+        if(this.buyValue==""){
+            this.$message.warning("请选择套餐！")
+            return
+        }
         this.loading = true
         //绑定套餐接口
-        this.loading = false
-        this.dialogFormVisible = false
+        boundUser({
+            username:this.uname,
+            bundleId:this.buyValue
+        }).then(res=>{
+            this.$message.success('绑定成功！')
+            this.loading = false
+            this.dialogFormVisible = false
+        }).catch(()=>{
+            this.loading = false
+        })
+        
       },
       getAllSup(){
           getAllSupplier().then(res=>{
@@ -500,8 +514,9 @@
         const sort = this.listQuery.sort;
         return sort === `+${key}` ? "ascending" : "descending";
       },
-      openRem(id){
+      openRem(val){
         this.buyValue=""
+        this.uname = val
          this.dialogFormVisible = true
       },
     },
