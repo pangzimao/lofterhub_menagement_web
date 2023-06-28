@@ -104,9 +104,9 @@
           prop="taocan"
           align="left"
         >
-        <template slot-scope="{ row }">
+        <!-- <template slot-scope="{ row }">
             <el-button type="primary" @click="lookUp(row.id)">查看</el-button>
-        </template>
+        </template> -->
         </el-table-column>
         <el-table-column
           label="最近申请时间"
@@ -148,7 +148,7 @@
         <div class="dialog-center">
             <el-select
           v-model="buyValue"
-          placeholder="是否过期"
+          placeholder="请选择套餐"
           clearable
           style="width: 200px"
           class="filter-item"
@@ -198,7 +198,7 @@
   import { parseTime } from "@/utils";
   import Pagination from "@/components/Pagination"; // secondary package based on el-pagination
   import { getAirport, createAirport, editAirport,getAllSupplier,updateTraffic,getAllBundles } from "@/api/airports";
-  import {getUserList} from "@/api/user"
+  import {getUserList,boundUser } from "@/api/user"
   const calendarTypeOptions = [
     { key: "CN", display_name: "China" },
     { key: "US", display_name: "USA" },
@@ -333,7 +333,7 @@
           .then((response) => {
             // fetchList(this.listQuery).then(response => {
             this.list = response.data.records;
-            this.total = response.data.total;
+            this.total = Number(response.data.total);
             this.listLoading = false;
           })
           .catch(() => {
@@ -371,21 +371,9 @@
         })
         
       },
-      getAllSup(){
-          getAllSupplier().then(res=>{
-              this.supplierList = res.data
-          })
-      },
       handleFilter() {
         this.listQuery.pageNo = 1;
         this.getList();
-      },
-      handleModifyStatus(row, status) {
-        this.$message({
-          message: "操作Success",
-          type: "success",
-        });
-        row.status = status;
       },
       sortChange(data) {
         const { prop, order } = data;

@@ -536,12 +536,12 @@ import steps from './steps'
           }
       },
       mounted(){
-        this.driver = new Driver()
-        if (window.location.href.indexOf("#reloaded") == -1) {
+        // this.driver = new Driver()
+        // if (window.location.href.indexOf("#reloaded") == -1) {
             // window.location.href = window.location.href + "#reloaded";
             // window.location.reload();
-            this.guide()
-        }
+            // this.guide()
+        // }
     },
       methods:{
         guide() {
