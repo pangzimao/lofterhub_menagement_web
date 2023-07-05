@@ -6,3 +6,10 @@ export function getToken() {
     method: 'get'
   })
 }
+
+export function getStat() {
+  return request({
+    url: '/dashboard/stat', // 仪表盘数据统计
+    method: 'get'
+  })
+}

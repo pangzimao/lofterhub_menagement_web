@@ -10,8 +10,8 @@
                           <div class="card-body">
                               <div class="d-flex align-items-center">
                                   <div>
-                                      <p class="mb-0 text-secondary">+2.5% from last week</p>
-                                      <h4 class="my-1 text-info">4805</h4>
+                                      <p class="mb-0 text-secondary">今日注册人数</p>
+                                      <h4 class="my-1 text-info">{{numberForm.registerCount}}</h4>
                                       <p class="mb-0 font-13">+2.5% from last week</p>
                                   </div>
                                   <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto"><i class='bx bxs-cart'></i>
@@ -25,8 +25,8 @@
                          <div class="card-body">
                              <div class="d-flex align-items-center">
                                  <div>
-                                     <p class="mb-0 text-secondary">总收入</p>
-                                     <h4 class="my-1 text-danger">￥84,245</h4>
+                                     <p class="mb-0 text-secondary">今日销售金额</p>
+                                     <h4 class="my-1 text-danger">￥{{numberForm.price}}</h4>
                                      <p class="mb-0 font-13">+5.4% from last week</p>
                                  </div>
                                  <div class="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto"><i class='bx bxs-wallet'></i>
@@ -40,8 +40,8 @@
                          <div class="card-body">
                              <div class="d-flex align-items-center">
                                  <div>
-                                     <p class="mb-0 text-secondary">回报率</p>
-                                     <h4 class="my-1 text-success">34.6%</h4>
+                                     <p class="mb-0 text-secondary">未处理工单总数</p>
+                                     <h4 class="my-1 text-success">{{ numberForm.unprocessed }}</h4>
                                      <p class="mb-0 font-13">-4.5% from last week</p>
                                  </div>
                                  <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto"><i class='bx bxs-bar-chart-alt-2' ></i>
@@ -55,8 +55,8 @@
                          <div class="card-body">
                              <div class="d-flex align-items-center">
                                  <div>
-                                     <p class="mb-0 text-secondary">客户总数</p>
-                                     <h4 class="my-1 text-warning">8.4K</h4>
+                                     <p class="mb-0 text-secondary">当日成本</p>
+                                     <h4 class="my-1 text-warning">{{numberForm.buyPrice}}</h4>
                                      <p class="mb-0 font-13">+8.4% from last week</p>
                                  </div>
                                  <div class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto"><i class='bx bxs-group'></i>
@@ -532,10 +532,17 @@ import steps from './steps'
       name:"",
       data() {
           return {
-            driver: null
+            driver: null,
+            numberForm:{
+                    "registerCount": 1,
+                    "price": 120.00,
+                    "unprocessed": 12,
+                    "buyPrice": 9.99
+                }
           }
       },
       mounted(){
+        this.getAllNum()
         // this.driver = new Driver()
         // if (window.location.href.indexOf("#reloaded") == -1) {
             // window.location.href = window.location.href + "#reloaded";
@@ -547,7 +554,18 @@ import steps from './steps'
         guide() {
         this.driver.defineSteps(steps)
         this.driver.start()
-        }
+        },
+        getAllNum(){
+            getStat().then(res=>{
+                let data = res.data
+                this.numberForm = {
+                    "registerCount": data.registerCount,
+                    "price": data.price,
+                    "unprocessed": data.unprocessed,
+                    "buyPrice": data.buyPrice
+                }
+            })
+        },
       }
   }
   </script>
